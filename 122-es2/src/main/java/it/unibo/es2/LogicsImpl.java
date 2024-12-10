@@ -1,9 +1,7 @@
 package it.unibo.es2;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class LogicsImpl implements Logics {
     private List<List<Boolean>> matrices;
