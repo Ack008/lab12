@@ -1,44 +1,44 @@
 package it.unibo.es2;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
+
 public class LogicsImpl implements Logics {
-    private final String[][] matrix;
-    private final int size;
-    public LogicsImpl(int size){
-        matrix = new String[size][size];
-        this.size = size;
+    private List<List<Boolean>> matrices;
+    public LogicsImpl(final int size){
+        matrices = new ArrayList<>();
+        for(int i = 0; i < size; i++){
+            List<Boolean> addedList = new ArrayList<>();
+            for(int j = 0; j < size; j++){
+                addedList.add(false);
+            }
+            matrices.add(addedList);
+        }
     }
 
     @Override
-    public String getText(final Pair<Integer, Integer> coord) {
-        matrix[coord.getY()][coord.getX()] = matrix[coord.getY()][coord.getX()] == "*" ? "" : "*";
-        return matrix[coord.getY()][coord.getX()];
+    public boolean getValue(final Pair<Integer, Integer> coord){
+        List<Boolean> newList = matrices.get(coord.getY());
+        newList.set(coord.getX(), !newList.get(coord.getX()));
+        matrices.set(coord.getY(), newList);
+        return matrices.get(coord.getY()).get(coord.getX());
     }
 
     private boolean checkRow(final int row){
-        boolean equal = true;
-        String str = matrix[row][0];
-        for(final var i : matrix[row]){
-            if(i != str){
-                equal = false;
-            }
-        }
-        return equal;
+        final boolean value = matrices.get(0).get(row);
+        return value != false && matrices.stream().map(i -> i.get(row)).allMatch(j -> j == value);
     }
 
     private boolean checkColm(final int colm){
-        boolean equal = true;
-        String value = matrix[0][colm];
-        for(int i = 0; i < size; i++){
-            if(matrix[i][colm] != value) {
-                equal = false;
-            }
-        }
-        return equal;
+        final boolean value = matrices.get(colm).get(0);
+        return value != false && matrices.get(colm).stream().allMatch(i -> i == value);
     }
 
     @Override
     public boolean quit(final Pair<Integer, Integer> coord) {
-        return checkColm(coord.getX()) || checkRow(coord.getY());
+        return checkColm(coord.getY()) || checkRow(coord.getX());
     }
 
 }

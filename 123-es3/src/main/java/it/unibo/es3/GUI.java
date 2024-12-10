@@ -15,7 +15,11 @@ public class GUI extends JFrame {
         this.setSize(70*width, 70*width);
         
         JPanel panel = new JPanel(new GridLayout(width,width));
-        this.getContentPane().add(panel);
+        JPanel canvas = new JPanel(new BorderLayout());
+        canvas.add(panel, BorderLayout.CENTER);
+        JButton nextFrameButton = new JButton(">");
+        canvas.add(nextFrameButton, BorderLayout.SOUTH);
+        this.getContentPane().add(canvas);
         
         ActionListener al = e -> {
             var jb = (JButton)e.getSource();
