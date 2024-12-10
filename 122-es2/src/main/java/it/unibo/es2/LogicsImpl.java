@@ -9,9 +9,9 @@ public class LogicsImpl implements Logics {
     }
 
     @Override
-    public String getText(int x, int y) {
-        matrix[y][x] = matrix[y][x] == "*" ? "" : "*";
-        return matrix[y][x];
+    public String getText(final Pair<Integer, Integer> coord) {
+        matrix[coord.getY()][coord.getX()] = matrix[coord.getY()][coord.getX()] == "*" ? "" : "*";
+        return matrix[coord.getY()][coord.getX()];
     }
 
     private boolean checkRow(final int row){
@@ -37,8 +37,8 @@ public class LogicsImpl implements Logics {
     }
 
     @Override
-    public boolean quit(int y, int x) {
-        return checkColm(x) || checkRow(y);
+    public boolean quit(final Pair<Integer, Integer> coord) {
+        return checkColm(coord.getX()) || checkRow(coord.getY());
     }
 
 }

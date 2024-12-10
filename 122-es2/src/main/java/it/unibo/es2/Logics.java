@@ -7,7 +7,7 @@ public interface Logics {
      * @param y
      * @return
      */
-    public String getText(final int x ,final int y);
+    public String getText(final Pair<Integer, Integer> coord);
 
     /**
      * 
@@ -15,5 +15,5 @@ public interface Logics {
      * @param y
      * @return
      */
-    public boolean quit(final int x, final int y);
+    public boolean quit(final Pair<Integer, Integer> coord);
 }

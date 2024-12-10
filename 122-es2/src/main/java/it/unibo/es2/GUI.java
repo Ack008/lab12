@@ -21,8 +21,10 @@ public class GUI extends JFrame {
         ActionListener al = (e)->{
             final JButton buttonClicked = (JButton)e.getSource();
             final Pair<Integer,Integer> buttonPosition = buttons.get(buttonClicked);
-            buttonClicked.setText(buttonPosition.toString()); // here call the logic to know what to show!
-            
+            buttonClicked.setText(logics.getText(buttonPosition)); // here call the logic to know what to show!
+            if(logics.quit(buttonPosition)) {
+                System.exit(0);
+            }
         };
                 
         for (int i=0; i<size; i++){
