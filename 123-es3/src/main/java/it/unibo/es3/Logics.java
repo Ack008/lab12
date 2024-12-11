@@ -4,9 +4,20 @@ public interface Logics {
 
     /**
      * 
-     * @param pos
+     * @param coord
      * @return
      */
-    public String getText(final int pos);
+    public boolean isActive(Pair<Integer,Integer> coord);
+
+    /**
+     * 
+     */
+    public void expandActives();
+
+    /**
+     * 
+     * @return
+     */
+    public boolean quit();
 
 }
