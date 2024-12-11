@@ -44,9 +44,7 @@ public class GUI extends JFrame {
     }
 
     private void drawGrid() {
-        for(final JButton button : cells) {
-            button.setText(getButtonText(cells.indexOf(button)));
-        }
+        cells.forEach(i -> i.setText(getButtonText(cells.indexOf(i))));
     }
     private String getButtonText(final int pos) {
         return  getButtonText(new Pair<>(pos % width, pos / width));
